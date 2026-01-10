@@ -31,8 +31,8 @@ test("Upload files", async ({ page }) => {
   //   let isMultiple = uploadFiles.isMultiple();
   //   console.log(isMultiple);
   uploadFiles.setFiles([
-    "C:/Users/Fady Magdy/Downloads/Upload Photos/God of War Ragnarok.png",
-    "C:/Users/Fady Magdy/Downloads/Upload Photos/God of War Ragnarok.png",
+    "Upload Photos/God of War Ragnarok.png",
+    "Upload Photos/God of War Ragnarok.png",
   ]);
 
   await page.waitForTimeout(2000);
