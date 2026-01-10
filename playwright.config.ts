@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 import { on } from "node:cluster";
-
+import dotenv from "dotenv";
+import path from "path";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -12,6 +13,7 @@ import { on } from "node:cluster";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 export default defineConfig({
   testDir: ".",
   // testMatch: ["fixture/Fixture.test.ts"],
