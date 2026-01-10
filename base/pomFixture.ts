@@ -62,15 +62,15 @@ let testPages = baseTest.extend<pages>({
     let context = await browser.newContext(testInfo.project.use);
     let itPage = await context.newPage();
     await use(itPage);
-    const testStatus = {
-      action: "setTestStatus",
-      arguments: {
-        status: testInfo.status,
-        remark: testInfo.error?.stack || testInfo.error?.message,
-      },
-    };
-    await itPage.evaluate(() => {},
-    `lambdatest_action: ${JSON.stringify(testStatus)}`);
+    // const testStatus = {
+    //   action: "setTestStatus",
+    //   arguments: {
+    //     status: testInfo.status,
+    //     remark: testInfo.error?.stack || testInfo.error?.message,
+    //   },
+    // };
+    // await itPage.evaluate(() => {},
+    // `lambdatest_action: ${JSON.stringify(testStatus)}`);
     await itPage.close();
     await context.close();
     await browser.close();

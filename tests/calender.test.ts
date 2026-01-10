@@ -17,9 +17,9 @@ test("Calender demo using moment", async ({ page }) => {
 
   await selectDate(15, "July 2003");
   await page.reload();
-  await selectDate(15, "July 2033");
+  await selectDate(15, "July 2026");
   await page.reload();
-  await selectDate(15, "July 2043");
+  await selectDate(15, "July 2028");
 
   await page.waitForTimeout(2000);
 

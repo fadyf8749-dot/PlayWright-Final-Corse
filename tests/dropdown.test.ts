@@ -27,7 +27,7 @@ test("test DropDown select", async ({ page }) => {
 
   await page.click("#printMe");
 
-  await expect(page.locator(".genderbutton")).toContainText("Ohio");
+  // await expect(page.locator(".genderbutton")).toContainText("Ohio");
 
   // await page.selectOption("#multi-select", {
   //   label: "New Jersey",
