@@ -29,36 +29,37 @@ const capabilities = {
     geoLocation: "", // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
   },
 };
-const modifyCapabilities = (configName, testName) => {
-  let config = configName.split("@lambdatest")[0];
-  let [browserName, browserVersion, platform] = config.split(":");
-  capabilities.browserName = browserName
-    ? browserName
-    : capabilities.browserName;
-  capabilities.browserVersion = browserVersion
-    ? browserVersion
-    : capabilities.browserVersion;
-  capabilities["LT:Options"]["platform"] = platform
-    ? platform
-    : capabilities["LT:Options"]["platform"];
-  capabilities["LT:Options"]["name"] = testName;
-};
+// const modifyCapabilities = (configName, testName) => {
+//   let config = configName.split("@lambdatest")[0];
+//   let [browserName, browserVersion, platform] = config.split(":");
+//   capabilities.browserName = browserName
+//     ? browserName
+//     : capabilities.browserName;
+//   capabilities.browserVersion = browserVersion
+//     ? browserVersion
+//     : capabilities.browserVersion;
+//   capabilities["LT:Options"]["platform"] = platform
+//     ? platform
+//     : capabilities["LT:Options"]["platform"];
+//   capabilities["LT:Options"]["name"] = testName;
+// };
 
 let testPages = baseTest.extend<pages>({
   page: async ({}, use, testInfo) => {
-    let fileName = testInfo.file.split(path.sep).pop();
-    if (testInfo.project.name.match(/lambdatest/)) {
-      modifyCapabilities(
-        testInfo.project.name,
-        `${testInfo.title} - ${fileName}`
-      );
-    }
+    // let fileName = testInfo.file.split(path.sep).pop();
+    // if (testInfo.project.name.match(/lambdatest/)) {
+    //   modifyCapabilities(
+    //     testInfo.project.name,
+    //     `${testInfo.title} - ${fileName}`
+    //   );
+    // }
 
-    let browser = await chromium.connect(
-      `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(
-        JSON.stringify(capabilities)
-      )}`
-    );
+    // let browser = await chromium.connect(
+    //   `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(
+    //     JSON.stringify(capabilities)
+    //   )}`
+    // );
+    let browser = await chromium.launch();
     let context = await browser.newContext(testInfo.project.use);
     let itPage = await context.newPage();
     await use(itPage);
