@@ -13,7 +13,7 @@ import path from "path";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+// dotenv.config({ path: path.resolve(__dirname, ".env") });
 export default defineConfig({
   testDir: ".",
   // testMatch: ["fixture/Fixture.test.ts"],

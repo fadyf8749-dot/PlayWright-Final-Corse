@@ -2,8 +2,10 @@ import { test } from "@playwright/test";
 
 test("Download files", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/generate-file-to-download-demo"
+    "https://www.lambdatest.com/selenium-playground/generate-file-to-download-demo",
   );
+  await page.waitForTimeout(3000);
+
   await page.type("#textbox", "Hiper Is Here");
   await page.click("#create");
 

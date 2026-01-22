@@ -2,13 +2,13 @@ import { expect, test } from "@playwright/test";
 
 test("test", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/simple-form-demo"
+    "https://www.lambdatest.com/selenium-playground/simple-form-demo",
   );
   let massgeInput = page.locator("input#user-message");
   console.log(await massgeInput.getAttribute("placeholder"));
   expect(massgeInput).toHaveAttribute(
     "placeholder",
-    "Please enter your Message"
+    "Please enter your Message",
   );
   console.log("Before entering data: " + (await massgeInput.inputValue()));
   await massgeInput.type("Hi Hiper");
@@ -17,10 +17,11 @@ test("test", async ({ page }) => {
 
 test("test the max", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/simple-form-demo"
+    "https://www.lambdatest.com/selenium-playground/simple-form-demo",
   );
   let num1 = 100;
   let num2 = 50;
+  await page.waitForTimeout(2000);
   await page.locator("#sum1").type("" + num1);
   await page.locator("#sum2").type("" + num2);
   await page.click("form#gettotal>button");
@@ -32,8 +33,9 @@ test("test the max", async ({ page }) => {
 
 test("check it ,and make sure its checked", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/checkbox-demo"
+    "https://www.lambdatest.com/selenium-playground/checkbox-demo",
   );
+  await page.waitForTimeout(2000);
   await page.check('(//input[@type="checkbox"])[1]');
   let checkMassege = page.locator('//p[normalize-space(text())="Checked!"]');
   await expect(checkMassege).toBeVisible();
@@ -41,7 +43,7 @@ test("check it ,and make sure its checked", async ({ page }) => {
 
 test("handling Alart", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/javascript-alert-box-demo"
+    "https://www.lambdatest.com/selenium-playground/javascript-alert-box-demo",
   );
 
   page.on("dialog", async (alert) => {

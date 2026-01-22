@@ -1,7 +1,7 @@
 import { test, expect } from "../base/pomFixture";
 import * as data from "../test-data/addToCart.test-data.json";
 
-let email = "Fady3@example.com";
+let email = "Fady4@example.com";
 let password = "Test1234";
 
 test.describe("test Register, Login & Add To Cart", () => {

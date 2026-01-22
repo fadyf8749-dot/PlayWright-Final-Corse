@@ -3,7 +3,6 @@ import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import SpecialHotPage from "../pages/SpecialHotPage";
-import path from "path";
 
 type pages = {
   registerpage: RegisterPage;
@@ -12,23 +11,23 @@ type pages = {
   SpecialHotPage: SpecialHotPage;
 };
 
-const capabilities = {
-  browserName: "Chrome", // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
-  browserVersion: "latest",
-  "LT:Options": {
-    platform: "Windows 10",
-    build: "Playwright Test Build",
-    name: "Playwright Test",
-    user: process.env.LT_USERNAME,
-    accessKey: process.env.LT_ACCESS_KEY,
-    network: true,
-    video: true,
-    console: true,
-    tunnel: false, // Add tunnel configuration if testing locally hosted webpage
-    tunnelName: "", // Optional
-    geoLocation: "", // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
-  },
-};
+// const capabilities = {
+//   browserName: "Chrome", // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
+//   browserVersion: "latest",
+//   "LT:Options": {
+//     platform: "Windows 10",
+//     build: "Playwright Test Build",
+//     name: "Playwright Test",
+//     user: process.env.LT_USERNAME,
+//     accessKey: process.env.LT_ACCESS_KEY,
+//     network: true,
+//     video: true,
+//     console: true,
+//     tunnel: false, // Add tunnel configuration if testing locally hosted webpage
+//     tunnelName: "", // Optional
+//     geoLocation: "", // country code can be fetched from https://www.lambdatest.com/capabilities-generator/
+//   },
+// };
 // const modifyCapabilities = (configName, testName) => {
 //   let config = configName.split("@lambdatest")[0];
 //   let [browserName, browserVersion, platform] = config.split(":");
@@ -45,7 +44,7 @@ const capabilities = {
 // };
 
 let testPages = baseTest.extend<pages>({
-  page: async ({}, use, testInfo) => {
+  page: async ({}, use) => {
     // let fileName = testInfo.file.split(path.sep).pop();
     // if (testInfo.project.name.match(/lambdatest/)) {
     //   modifyCapabilities(
@@ -54,26 +53,26 @@ let testPages = baseTest.extend<pages>({
     //   );
     // }
 
-    // let browser = await chromium.connect(
-    //   `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(
-    //     JSON.stringify(capabilities)
-    //   )}`
-    // );
+    //   // let browser = await chromium.connect(
+    //   //   `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(
+    //   //     JSON.stringify(capabilities)
+    //   //   )}`
+    //   // );
     let browser = await chromium.launch();
-    let context = await browser.newContext(testInfo.project.use);
+    let context = await browser.newContext();
     let itPage = await context.newPage();
     await use(itPage);
-    //
-    // const testStatus = {
-    //   action: "setTestStatus",
-    //   arguments: {
-    //     status: testInfo.status,
-    //     remark: testInfo.error?.stack || testInfo.error?.message,
-    //   },
-    // };
-    // await itPage.evaluate(() => {},
-    // `lambdatest_action: ${JSON.stringify(testStatus)}`);
-    //
+    //   //
+    //   // const testStatus = {
+    //   //   action: "setTestStatus",
+    //   //   arguments: {
+    //   //     status: testInfo.status,
+    //   //     remark: testInfo.error?.stack || testInfo.error?.message,
+    //   //   },
+    //   // };
+    //   // await itPage.evaluate(() => {},
+    //   // `lambdatest_action: ${JSON.stringify(testStatus)}`);
+    //   //
     await itPage.close();
     await context.close();
     await browser.close();

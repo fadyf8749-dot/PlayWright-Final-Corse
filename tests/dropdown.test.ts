@@ -2,8 +2,9 @@ import { expect, test } from "@playwright/test";
 
 test("test DropDown", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/select-dropdown-demo"
+    "https://www.lambdatest.com/selenium-playground/select-dropdown-demo",
   );
+  await page.waitForTimeout(3000);
   await page.selectOption("#select-demo", {
     label: "Saturday",
   });
@@ -14,7 +15,7 @@ test("test DropDown", async ({ page }) => {
 
 test("test DropDown select", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/select-dropdown-demo"
+    "https://www.lambdatest.com/selenium-playground/select-dropdown-demo",
   );
   await page.selectOption("#multi-select", {
     label: "Ohio",
@@ -39,21 +40,22 @@ test("test DropDown select", async ({ page }) => {
 
 test("test DropDown select Number 2", async ({ page }) => {
   await page.goto(
-    "https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo"
+    "https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo",
   );
   await selectcountry("Australia");
   await selectcountry("Denmark");
   await selectcountry("Netherlands");
 
-  async function selectcountry(countryname:string) {
-  await page.click("#country+span");
-  await page.locator("ul#select2-country-results").locator("li", {
-    hasText: countryname,
-  }).click();
-}
-})
-
-
+  async function selectcountry(countryname: string) {
+    await page.click("#country+span");
+    await page
+      .locator("ul#select2-country-results")
+      .locator("li", {
+        hasText: countryname,
+      })
+      .click();
+  }
+});
 
 // test('test', async ({ page }) => {
 //   await page.goto('https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo');
