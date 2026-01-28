@@ -9,4 +9,5 @@ test("Register test", async ({ page }) => {
   await Login.Login();
 
   await page.waitForTimeout(2000);
+  
 });
